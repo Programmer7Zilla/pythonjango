@@ -23,14 +23,10 @@ create_table = """
 CREATE TABLE """+tab_name+""" (
        col1 VARCHAR2(50) NOT NULL,
        col2 VARCHAR2(50) NOT NULL,
-       col3 VARCHAR2(50) NOT NULL,
-       col4 VARCHAR2(50) NOT NULL,
-       col5 VARCHAR2(50) NOT NULL,
-       col6 VARCHAR2(50) NOT NULL,
-       col7 VARCHAR2(50) NOT NULL
+       col3 VARCHAR2(50) NOT NULL
 )    """    
 cursor.execute(create_table)     
-insert_table = "INSERT INTO "+tab_name+" VALUES (:1,:2,:3,:4,:5,:6,:7)"    
+insert_table = "INSERT INTO "+tab_name+" VALUES (col1,:2,:3)"    
 df = pd.read_excel(file)    
 df_list = df.fillna('').values.tolist()    
 cursor.executemany(insert_table,df_list)    
